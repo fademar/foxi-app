@@ -42,12 +42,37 @@ class Price {
     {
         this.value = value;
     }
-} 
+}
+
+class Custom {
+    constructor(prices) {
+        this.prices = prices;
+    }
+}
 
 class Result {
+    constructor(trip, custom)
+    {
+        this.trips = trips;
+        this.custom = custom;
+    }
+}
+
+class Json {
     constructor(status, result)
     {
         this.status = status;
         this.result = result;
     }
 }
+
+module.exports = {
+    Passenger : Passenger,
+    Train : Train,
+    RoundTrip : RoundTrip,
+    Trip : Trip,
+    Price : Price,
+    Custom : Custom,
+    Result : Result,
+    Json : Json
+  }

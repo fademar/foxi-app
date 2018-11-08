@@ -6,6 +6,7 @@ const port = 3000;
 const bodyparser = require('body-parser');
 const path = require('path');
 const cheerio = require('cheerio');
+const Classes = require('./classes');
 
 // Init express app
 const app = express();
@@ -28,6 +29,13 @@ const html = fs.readFileSync(__dirname + '/public/assets/test.html', 'utf8');
 // Clean the html code
 const cleanHtml = html.replace(/(?:\\[rn]|[\r\n]+)+/g, '').replace(/\\"/gm,'"').replace(/\s\s+/g, ' ');
 
+// Setup Cheerio
+const $ = cheerio.load(cleanHtml);
+
+
+function assignData() {
+    
+}
 
 // Cross-Origin Handlers
 app.use(function (req, res, next) {
