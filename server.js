@@ -13,30 +13,6 @@ const app = express();
 app.use(bodyparser.json());
 
 
-// express Sendfile Option
-const OPTIONS = {
-    root: __dirname + '/public/assets/',
-    dotfiles: 'deny',
-    headers: {
-        'x-timestamp': Date.now(),
-        'x-sent': true
-    }
-};
-
-// Read the html file
-const html = fs.readFileSync(__dirname + '/public/assets/test.html', 'utf8');
-
-// Clean the html code
-const cleanHtml = html.replace(/(?:\\[rn]|[\r\n]+)+/g, '').replace(/\\"/gm,'"').replace(/\s\s+/g, ' ');
-
-// Setup Cheerio
-const $ = cheerio.load(cleanHtml);
-
-
-function assignData() {
-    
-}
-
 // Cross-Origin Handlers
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -46,19 +22,31 @@ app.use(function (req, res, next) {
 });
 
 // Point static path to dist directory for angular
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
-//Init server
+// Init server
 app.listen(port);
 
+async function processData() {
+    // Read the html file
+    const html = await fs.readFileSync(__dirname + '/dist/assets/test.html', 'utf8');
+    
+    // Clean the html code
+    const cleanHtml = await html.replace(/(?:\\[rn]|[\r\n]+)+/g, '').replace(/\\"/gm,'"').replace(/\s\s+/g, ' ');
+
+    return cleanHtml;
+
+}
 
 // Send html file
-app.get('/api/file', (req, res) => {
-    res.status(200).send(cleanHtml);
+app.get('/api/file', (req, res) => {  
+    processData().then((data) => {
+        res.status(200).send(data);
+    });
 });
 
 
 
 app.get('*',  (req, res) => {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/index.html'));
 });

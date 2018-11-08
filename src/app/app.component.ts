@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FileService } from './services/file.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'foxi-app';
+    title = 'foxintelligence-test';
+
+  file;
+    
+  constructor(private fileService: FileService) { }
+
+  showResult() {
+      this.fileService.getResult().subscribe( data => this.file = data );
+  }
 }
