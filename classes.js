@@ -37,6 +37,14 @@ class Trip {
     }
 }
 
+class Details {
+    constructor(price, roundtrips)
+    {
+        this.price = price;
+        this.roundtrips = roundtrips; 
+    }
+}
+
 class Price {
     constructor(value)
     {
@@ -71,6 +79,7 @@ module.exports = {
     Train : Train,
     RoundTrip : RoundTrip,
     Trip : Trip,
+    Details : Details,
     Price : Price,
     Custom : Custom,
     Result : Result,
