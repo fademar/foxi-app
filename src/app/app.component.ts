@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FileService } from './services/file.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-root',
@@ -7,13 +9,19 @@ import { FileService } from './services/file.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'foxintelligence-test';
+  
+  title = 'foxintelligence-test';
+  downloadUri;
+  downloadName;
 
-  file;
-    
-  constructor(private fileService: FileService) { }
+  constructor(private fileService: FileService, private sanitizer: DomSanitizer) { }
 
-  showResult() {
-      this.fileService.getResult().subscribe( data => this.file = data );
+  ngOnInit() { 
+    this.fileService.getResult().subscribe( data => {
+      const blob = window.URL.createObjectURL(new Blob([data], {type: "text/json;charset=utf-8"}));
+      this.downloadUri  = this.sanitizer.bypassSecurityTrustResourceUrl(blob);
+      this.downloadName = 'test-result.json';
+    });
   }
+
 }

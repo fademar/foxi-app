@@ -60,7 +60,7 @@ class Custom {
 }
 
 class Result {
-    constructor(trip, custom)
+    constructor(trips, custom)
     {
         this.trips = trips;
         this.custom = custom;
