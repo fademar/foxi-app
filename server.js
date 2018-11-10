@@ -58,18 +58,39 @@ async function processData() {
     Trip.name = name;
     Trip.details = Details;
 
-    // Roundtrip
-    const arrayRoundtrips = [];
-    const arrayTrains = [];
 
     $('.product-details').each(function(i, elem) {
         const Roundtrip = new Classes.RoundTrip;
-        const type = $(this).find($('.travel-way')).text().trim();
-        Roundtrip.type = type;
-        const date = new Date.parse($(this).prev().find($('.product-travel-date')).text().trim());
+        const typeJourney = $(this).find($('.travel-way')).text().trim();
+        Roundtrip.type = typeJourney;
+        const date = $(this).prev().find($('.product-travel-date')).text().trim();
         Roundtrip.date = date;
+
+        const Train = new Classes.Train;
+        const departureTime = $(this).find($('.origin-destination-hour .segment-departure').text().trim());
+        Train.departureTime = departureTime;
+        const departureStation = $(this).find($('.origin-destination-station .segment-departure').text().trim());
+        Train.departureStation = departureStation;
+        const arrivalTime = $(this).find($('.origin-destination-hour .segment-arrival').text().trim());
+        Train.arrivalTime = arrivalTime;
+        const arrivalStation = $(this).find($('.origin-destination-station .segment-arrival').text().trim());
+        Train.arrivalStation = arrivalStation;
+        // const typeTrain = $(this).find($('.segment').text().replace(/\d/i, '').trim());
+        // Train.type = typeTrain;
+        const numberTrain = $(this).find($('.segment').text().replace(/\D/i, '').trim());
+        console.log(numberTrain);
+        // Train.number = numberTrain;
         Details.roundtrips.push(Roundtrip);
     });
+
+
+    this.departureTime = departureTime;
+    this.departureStation = departureStation;
+    this.arrivalTime = arrivalTime;
+    this.type = type;
+    this.number = number;
+    this.passengers = passengers;
+
 
     console.log(JSON.stringify(Trip));
     return cleanHtml;

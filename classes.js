@@ -8,11 +8,12 @@ class Passenger {
 }
 
 class Train {
-    constructor(departureTime, departureStation, arrivalTime, type, number, passengers) 
+    constructor(departureTime, departureStation, arrivalTime, arrivalStation, type, number, passengers) 
     {
         this.departureTime = departureTime;
         this.departureStation = departureStation;
         this.arrivalTime = arrivalTime;
+        this.arrivalStation = arrivalStation;
         this.type = type;
         this.number = number;
         this.passengers = passengers;
