@@ -1,16 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<div class="container">
+  <div class="element">
+    <h1>
+      Welcome to FoxIntelligence Test
+    </h1>
+
+    <a [href]="downloadUri" [download]="downloadName" class="button">
+        <span>Test me!</span>
+    </a>
+  </div>
 </div>
-
-<a [href]="downloadUri" [download]="downloadName" class="button">
-    <span>Test me!</span>
-</a>
-
-
-<pre [innerHTML]="file"></pre>
 
 
 <router-outlet></router-outlet>

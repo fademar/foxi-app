@@ -10,7 +10,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
   
-  title = 'foxintelligence-test';
   downloadUri;
   downloadName;
 
