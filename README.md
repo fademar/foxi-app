@@ -7,7 +7,7 @@ Download the entire project and unzip it.
 
 ## Install
 
-Run `npm install` in the Terminal once you have downloaded the code.
+Run `npm install` in the Terminal from the local directory where the code has been downloaded.
 
 ## Serve and Build
 
