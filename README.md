@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Clone
 Download the entire project and unzip it.
 
-## Build
+## Install
 
 Run `npm install` in the Terminal once you have downloaded the code.
 
